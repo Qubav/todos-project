@@ -10,6 +10,8 @@ class TodoPage:
         self.button_active = "a[href='#/active']"
         self.button_all = "a[href='#/all']"
         self.button_completed = "a[href='#/completed']"
+        self.todo_locating = "label"
+        self.button_destroy = "button.destroy"
 
     def open_todo_website(self) -> None:
         self.page.goto(self.url)
@@ -31,3 +33,15 @@ class TodoPage:
     
     def display_active_todos(self) -> None:
         self.page.locator(self.button_active).click()
+    
+    def hover_over_todo(self, todo_name: str) -> None:
+        self.page.locator(self.todo_locating, has_text=todo_name).hover()
+    
+    def destroy_todo(self) -> None:
+        self.page.locator(self.button_destroy).click()
+    
+    def check_if_todo_is_present(self, todo_name: str) -> bool:
+        if self.page.locator(self.todo_locating, has_text=todo_name).count() >= 1:
+            return True
+        else:
+            return False
