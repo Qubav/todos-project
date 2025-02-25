@@ -12,6 +12,7 @@ class TodoPage:
         self.button_completed = "a[href='#/completed']"
         self.todo_locating = "label"
         self.button_destroy = "button.destroy"
+        self.completed_toggle_locating = "input.toggle"
 
     def open_todo_website(self) -> None:
         self.page.goto(self.url)
@@ -42,3 +43,6 @@ class TodoPage:
     
     def get_todo_locator(self, todo_name: str) -> Locator:
         return self.page.locator(self.todo_locating, has_text=todo_name)
+    
+    def get_todos_completed_toggle_locators(self) -> list[Locator]:
+        return self.page.locator(self.completed_toggle_locating).all()
