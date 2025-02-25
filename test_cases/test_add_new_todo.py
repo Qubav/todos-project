@@ -12,5 +12,5 @@ def test_add_new_todo(todo_page: TodoPage) -> None:
     todo_page.click_todo_input_field()
     todo_page.enter_todo_name("text Ola")
     todo_page.save_todo()
-    todo_locator = todo_page.get_todo_locator("text Ola123")
+    todo_locator = todo_page.get_todo_locator("text Ola")
     expect(todo_locator).to_have_count(1)
