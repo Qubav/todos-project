@@ -15,4 +15,5 @@ def test_add_multiple_todos(todo_page: TodoPage) -> None:
     for todo_name in TODO_NAMES:
         todo_page.enter_todo_name(todo_name)
         todo_page.save_todo()
+    todo_page.take_screen_shot("multiple todos added test")
     assert(len(todo_page.get_todos_completed_toggle_locators()) == len(TODO_NAMES))

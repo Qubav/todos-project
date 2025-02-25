@@ -1,5 +1,6 @@
 from playwright.sync_api import  Page, Locator
 from environment import URL
+import allure
 
 class TodoPage:
 
@@ -46,3 +47,6 @@ class TodoPage:
     
     def get_todos_completed_toggle_locators(self) -> list[Locator]:
         return self.page.locator(self.completed_toggle_locating).all()
+
+    def take_screen_shot(self, screenshot_name: str) -> None:
+        self.page.screenshot(path="screenshots/" + screenshot_name + ".png")
