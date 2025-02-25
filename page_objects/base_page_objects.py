@@ -1,4 +1,4 @@
-from playwright.sync_api import  Page
+from playwright.sync_api import  Page, Locator
 from environment import URL
 
 class TodoPage:
@@ -40,8 +40,5 @@ class TodoPage:
     def destroy_todo(self) -> None:
         self.page.locator(self.button_destroy).click()
     
-    def check_if_todo_is_present(self, todo_name: str) -> bool:
-        if self.page.locator(self.todo_locating, has_text=todo_name).count() >= 1:
-            return True
-        else:
-            return False
+    def get_todo_locator(self, todo_name: str) -> Locator:
+        return self.page.locator(self.todo_locating, has_text=todo_name)
