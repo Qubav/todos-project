@@ -13,20 +13,23 @@ def test_display_all_view(todo_page: TodoPage) -> None:
     todo_page.enter_todo_name("text Ola")
     todo_page.save_todo()
     todo_page.display_all_todos()
+    todo_page.take_screen_shot("display all todos")
     expect(todo_page.get_all_button_selected_locator()).to_have_count(1)
-
-def test_display_completed_view(todo_page: TodoPage) -> None:
-    todo_page.open_todo_website()
-    todo_page.click_todo_input_field()
-    todo_page.enter_todo_name("text Ola")
-    todo_page.save_todo()
-    todo_page.display_active_todos()
-    expect(todo_page.get_active_button_selected_locator()).to_have_count(1)
 
 def test_display_active_view(todo_page: TodoPage) -> None:
     todo_page.open_todo_website()
     todo_page.click_todo_input_field()
     todo_page.enter_todo_name("text Ola")
     todo_page.save_todo()
+    todo_page.display_active_todos()
+    todo_page.take_screen_shot("display active todos")
+    expect(todo_page.get_active_button_selected_locator()).to_have_count(1)
+
+def test_display_completed_view(todo_page: TodoPage) -> None:
+    todo_page.open_todo_website()
+    todo_page.click_todo_input_field()
+    todo_page.enter_todo_name("text Ola")
+    todo_page.save_todo()
     todo_page.display_completed_todos()
+    todo_page.take_screen_shot("display completed todos")
     expect(todo_page.get_completed_button_selected_locator()).to_have_count(1)
