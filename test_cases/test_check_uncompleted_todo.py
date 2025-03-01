@@ -1,0 +1,38 @@
+from page_objects.base_page_objects import TodoPage
+from playwright.sync_api import Page, expect
+import pytest
+import allure
+
+@pytest.fixture()
+def todo_page(page: Page) -> TodoPage:
+    return TodoPage(page)
+
+def test_uncompleted_todo_in_all_view(todo_page: TodoPage) -> None:
+    todo_page.open_todo_website()
+    todo_page.click_todo_input_field()
+    todo_page.enter_todo_name("ask Ola abou her day")
+    todo_page.save_todo()
+    todo_page.display_all_todos()
+    todo_page.take_screen_shot("uncompleted todo in display all view")
+    todo_locator = todo_page.get_todo_locator("ask Ola abou her day")
+    expect(todo_locator).to_have_count(1)
+
+def test_uncompleted_todo_in_active_view(todo_page: TodoPage) -> None:
+    todo_page.open_todo_website()
+    todo_page.click_todo_input_field()
+    todo_page.enter_todo_name("ask Ola abou her day")
+    todo_page.save_todo()
+    todo_page.display_active_todos()
+    todo_page.take_screen_shot("uncompleted todo in display active view")
+    todo_locator = todo_page.get_todo_locator("ask Ola abou her day")
+    expect(todo_locator).to_have_count(1)
+
+def test_uncompleted_todo_in_display_completed_view(todo_page: TodoPage) -> None:
+    todo_page.open_todo_website()
+    todo_page.click_todo_input_field()
+    todo_page.enter_todo_name("ask Ola abou her day")
+    todo_page.save_todo()
+    todo_page.display_completed_todos()
+    todo_page.take_screen_shot("uncompleted todo in display completed view")
+    todo_locator = todo_page.get_todo_locator("ask Ola abou her day")
+    expect(todo_locator).to_have_count(0)
