@@ -14,6 +14,10 @@ class TodoPage:
         self.todo_locating = "label"
         self.button_destroy = "button.destroy"
         self.completed_toggle_locating = "input.toggle"
+        self.todos_left_displayed_number_locating = "strong"
+        self.selected_button_all = "a.selected[href='#/all']"
+        self.selected_button_completed = "a.selected[href='#/completed']"
+        self.selected_button_active = "a.selected[href='#/active']"
 
     def open_todo_website(self) -> None:
         self.page.goto(self.url)
@@ -50,3 +54,12 @@ class TodoPage:
 
     def take_screen_shot(self, screenshot_name: str) -> None:
         self.page.screenshot(path="screenshots/" + screenshot_name + ".png")
+    
+    def get_all_button_selected_locator(self) -> Locator:
+        return self.page.locator(self.selected_button_all)
+    
+    def get_active_button_selected_locator(self) -> Locator:
+        return self.page.locator(self.selected_button_active)
+    
+    def get_completed_button_selected_locator(self) -> Locator:
+        return self.page.locator(self.selected_button_completed)
