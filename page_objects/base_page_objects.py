@@ -63,3 +63,7 @@ class TodoPage:
     
     def get_completed_button_selected_locator(self) -> Locator:
         return self.page.locator(self.selected_button_completed)
+
+    def mark_todo_as_completed(self, todo_number: int = 0) -> None:
+        locators = self.get_todos_completed_toggle_locators()
+        locators[todo_number].click()
