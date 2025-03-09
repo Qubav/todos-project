@@ -20,6 +20,7 @@ class TodoPage:
         self.selected_button_active = "a.selected[href='#/active']"
         self.edited_todo_locator = "input.edit"
         self.button_select_all_as_completed = "label[for='toggle-all']"
+        self.button_clear_completed = "button.clear-completed"
 
     def open_todo_website(self) -> None:
         self.page.goto(self.url)
@@ -79,3 +80,6 @@ class TodoPage:
     def get_all_todos_selected_as_completed(self) -> None:
         """If all todos are already selected and this method is used, all todos will be unselected"""
         self.page.locator(self.button_select_all_as_completed).click()
+    
+    def click_clear_completed_button(self) -> None:
+        self.page.locator(self.button_clear_completed).click()
