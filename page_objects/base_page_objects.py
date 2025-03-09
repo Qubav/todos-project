@@ -18,6 +18,7 @@ class TodoPage:
         self.selected_button_all = "a.selected[href='#/all']"
         self.selected_button_completed = "a.selected[href='#/completed']"
         self.selected_button_active = "a.selected[href='#/active']"
+        self.edited_todo_locator = "input.edit"
 
     def open_todo_website(self) -> None:
         self.page.goto(self.url)
@@ -28,8 +29,14 @@ class TodoPage:
     def enter_todo_name(self, todo_name: str) -> None:
         self.page.locator(self.todo_input_field).fill(todo_name)
     
+    def enter_todo_name_to_edited_todo(self, todo_name: str) -> None:
+        self.page.locator(self.edited_todo_locator).fill(todo_name)
+
     def save_todo(self) -> None:
         self.page.locator(self.todo_input_field).press(key="Enter")
+
+    def save_edited_todo(self) -> None:
+        self.page.locator(self.edited_todo_locator).press(key="Enter")
 
     def display_all_todos(self) -> None:
         self.page.locator(self.button_all).click()
